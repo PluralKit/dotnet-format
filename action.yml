@@ -24,11 +24,6 @@ inputs:
     required: true
     default: "check"
 
-  only-changed-files:
-    description: "Only changed files in the current pull request should be formatted"
-    required: false
-    default: "false"
-
   fail-fast:
     description: "The job should fail if there's a formatting error"
     required: false

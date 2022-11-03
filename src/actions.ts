@@ -8,7 +8,7 @@ import { format } from "./dotnet";
 import { checkVersion } from "./version";
 
 export async function check(): Promise<void> {
-  const onlyChangedFiles = getBooleanInput("only-changed-files", { required: false } ) || false;
+  // const onlyChangedFiles = getBooleanInput("only-changed-files", { required: false } ) || false;
   const failFast = getBooleanInput("fail-fast");
   const version = getInput("version", { required: true });
 
@@ -16,7 +16,7 @@ export async function check(): Promise<void> {
 
   const result = await format(dotnetFormatVersion)({
     dryRun: true,
-    onlyChangedFiles,
+    onlyChangedFiles: false,
   });
 
   setOutput("has-changes", result.toString());
@@ -28,14 +28,14 @@ export async function check(): Promise<void> {
 }
 
 export async function fix(): Promise<void> {
-  const onlyChangedFiles = getBooleanInput("only-changed-files", { required: false }) || false;
+  // const onlyChangedFiles = getBooleanInput("only-changed-files", { required: false }) || false;
   const version = getInput("version", { required: true });
 
   const dotnetFormatVersion = checkVersion(version);
 
   const result = await format(dotnetFormatVersion)({
     dryRun: false,
-    onlyChangedFiles,
+    onlyChangedFiles: false,
   });
 
   setOutput("has-changes", result.toString());
