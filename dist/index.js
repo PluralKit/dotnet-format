@@ -10914,13 +10914,13 @@ const core_1 = __nccwpck_require__(2186);
 const dotnet_1 = __nccwpck_require__(9870);
 const version_1 = __nccwpck_require__(1946);
 async function check() {
-    const onlyChangedFiles = (0, core_1.getBooleanInput)("only-changed-files", { required: false }) || false;
+    // const onlyChangedFiles = getBooleanInput("only-changed-files", { required: false } ) || false;
     const failFast = (0, core_1.getBooleanInput)("fail-fast");
     const version = (0, core_1.getInput)("version", { required: true });
     const dotnetFormatVersion = (0, version_1.checkVersion)(version);
     const result = await (0, dotnet_1.format)(dotnetFormatVersion)({
         dryRun: true,
-        onlyChangedFiles,
+        onlyChangedFiles: false,
     });
     (0, core_1.setOutput)("has-changes", result.toString());
     // fail fast will cause the workflow to stop on this job
@@ -10930,12 +10930,12 @@ async function check() {
 }
 exports.check = check;
 async function fix() {
-    const onlyChangedFiles = (0, core_1.getBooleanInput)("only-changed-files", { required: false }) || false;
+    // const onlyChangedFiles = getBooleanInput("only-changed-files", { required: false }) || false;
     const version = (0, core_1.getInput)("version", { required: true });
     const dotnetFormatVersion = (0, version_1.checkVersion)(version);
     const result = await (0, dotnet_1.format)(dotnetFormatVersion)({
         dryRun: false,
-        onlyChangedFiles,
+        onlyChangedFiles: false,
     });
     (0, core_1.setOutput)("has-changes", result.toString());
 }
