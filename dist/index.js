@@ -10968,7 +10968,7 @@ function formatOnlyChangedFiles(onlyChangedFiles) {
 }
 async function formatVersion3(options) {
     const execOptions = { ignoreReturnCode: true };
-    const dotnetFormatOptions = ["format"];
+    const dotnetFormatOptions = ["format", "--no-restore"];
     if (options.dryRun) {
         dotnetFormatOptions.push("--verify-no-changes");
     }
